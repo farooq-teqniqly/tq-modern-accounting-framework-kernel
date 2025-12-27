@@ -18,6 +18,8 @@
   - No NUnit (tests should be **XUnit**) unless asked
   - No Moq (prefer **NSubstitute**) unless asked
   - No PostgreSQL/Cosmos unless asked
+  - No AutoMapper (use **manual mapping** - explicit mapping methods/constructors)
+  - No FluentAssertions (use **built-in xUnit assertions** - Assert.Equal, Assert.True, etc.)
 - Prefer **vertical slice** organization for features (commands/queries grouped by feature).
 - Keep changes small, incremental, and aligned to the existing patterns in this repo.
 
@@ -75,11 +77,22 @@
 
 ### Testing conventions
 - Unit tests: XUnit + NSubstitute
+  - Use **built-in xUnit assertions** (Assert.Equal, Assert.True, Assert.NotNull, etc.)
+  - Do **not** use FluentAssertions
 - Integration tests:
   - Prefer Testcontainers where feasible
   - Keep integration tests deterministic and isolated
 - TDD expected:
   - Write failing test first (RED), then minimum code (GREEN), then refactor
+
+### Mapping conventions
+- **Manual mapping only**: Do not use AutoMapper
+- Use explicit mapping methods, constructors, or extension methods
+- Keep mapping logic in Application layer (DTOs) or Infrastructure layer (for persistence models)
+- Example patterns:
+  - `ToDto()` extension methods on domain entities
+  - Static factory methods: `Dto.FromEntity(entity)`
+  - Constructor-based mapping: `new Dto(entity.Property1, entity.Property2)`
 
 ### Immutability and data protection conventions
 - **Byte array properties**: Never expose `byte[]` directly from properties (CA1819 violation)
