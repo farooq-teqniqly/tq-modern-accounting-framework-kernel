@@ -1,5 +1,14 @@
 # Sprint Story: Core Domain Model - Accounting Kernel Foundation
 
+## Progress Summary
+
+**Status**: 🟡 In Progress  
+**Completed**: Base classes (`AggregateRoot`), domain events infrastructure (`IDomainEvent`), project setup  
+**Tests**: 7/7 passing for `AggregateRoot`  
+**Next**: Implement `Entity` base class, then value objects
+
+---
+
 ## Story Summary
 
 **As a** system architect and developer  
@@ -49,15 +58,15 @@
 
 ### Functional Requirements
 
-- [ ] `AccountingKernel.Domain` project created with zero NuGet package dependencies (except .NET Standard/BCL)
+- [x] `AccountingKernel.Domain` project created with zero NuGet package dependencies (except .NET Standard/BCL)
 - [ ] Base classes implemented:
-  - [ ] `AggregateRoot` abstract base class with:
-    - [ ] `Guid Id` property (protected setter)
-    - [ ] Protected parameterless constructor that generates ID via `Guid.CreateVersion7()`
-    - [ ] Protected constructor `AggregateRoot(Guid id)` for loading from persistence
-    - [ ] Domain events collection (`IReadOnlyCollection<IDomainEvent> DomainEvents`)
-    - [ ] `AddDomainEvent()` protected method
-    - [ ] `ClearDomainEvents()` public method
+  - [x] `AggregateRoot` abstract base class with:
+    - [x] `Guid Id` property (protected setter)
+    - [x] Protected parameterless constructor that generates ID via `Guid.CreateVersion7()`
+    - [x] Protected constructor `AggregateRoot(Guid id)` for loading from persistence
+    - [x] Domain events collection (`IReadOnlyCollection<IDomainEvent> DomainEvents`)
+    - [x] `AddDomainEvent()` protected method
+    - [x] `ClearDomainEvents()` public method
   - [ ] `Entity` abstract base class with:
     - [ ] `Guid Id` property (protected setter)
     - [ ] Protected parameterless constructor that generates ID via `Guid.CreateVersion7()`
@@ -110,22 +119,23 @@
 - [ ] Domain service interfaces defined:
   - [ ] `IPostingService` with `PostAsync(ExternalTransaction, Guid targetAccountId)` method
   - [ ] `IAttributeCalculator` with `CalculateAsync(Guid accountId, AttributeName, DateTime asOfDate)` method
-- [ ] Domain events defined:
-  - [ ] `TransactionPosted` event
-  - [ ] `AttributeAdded` event
+- [ ] Domain events infrastructure:
+  - [x] `IDomainEvent` interface defined (marker interface for all domain events)
+  - [ ] `TransactionPosted` event (specific event - to be implemented with aggregates)
+  - [ ] `AttributeAdded` event (specific event - to be implemented with aggregates)
   - [ ] Additional events as needed for other state changes
 
 ### Non-Functional Requirements
 
-- [ ] **Zero Dependencies**: Domain assembly has no references to:
-  - [ ] Infrastructure projects (EF Core, Dapper, SQL Server)
-  - [ ] Hosting projects (ASP.NET Core, .NET Aspire)
-  - [ ] External frameworks (except .NET Standard/BCL)
-- [ ] **Testability**: Domain tests run without any infrastructure setup
-- [ ] **Immutability**: Value objects are immutable records
-- [ ] **Invariant Enforcement**: All aggregates enforce business invariants
-- [ ] **Event Emission**: All state changes emit domain events
-- [ ] **Code Quality**: All code follows Teqniqly stack conventions (see `.cursor/rules/TEQNIQLY_STACK.cursorrules`)
+- [x] **Zero Dependencies**: Domain assembly has no references to:
+  - [x] Infrastructure projects (EF Core, Dapper, SQL Server) - verified
+  - [x] Hosting projects (ASP.NET Core, .NET Aspire) - verified
+  - [x] External frameworks (except .NET Standard/BCL) - verified
+- [x] **Testability**: Domain tests run without any infrastructure setup (7 tests passing)
+- [ ] **Immutability**: Value objects are immutable records (pending value object implementation)
+- [ ] **Invariant Enforcement**: All aggregates enforce business invariants (pending aggregate implementation)
+- [ ] **Event Emission**: All state changes emit domain events (infrastructure ready, pending aggregate implementation)
+- [x] **Code Quality**: All code follows Teqniqly stack conventions (see `.cursor/rules/TEQNIQLY_STACK.cursorrules`)
 
 ---
 
@@ -136,8 +146,12 @@
 ### Phase 1.1: Project Setup and Structure
 **Summary**: Create the standalone domain assembly and test project with proper project structure and zero dependencies.
 
+**Status**: ✅ Completed - `Teqniqly.MAF.Kernel.Domain` and `Teqniqly.MAF.Kernel.Domain.Tests` projects created with zero dependencies.
+
 ### Phase 1.2: Base Classes
 **Summary**: Implement `AggregateRoot` and `Entity` base classes with automatic ID generation, domain events collection, and constructors for both new creation and persistence loading.
+
+**Status**: ✅ `AggregateRoot` completed with full test coverage (7 tests). `Entity` pending.
 
 ### Phase 1.3: Value Objects and Domain Events
 **Summary**: Implement all value objects (records) and define domain event classes. These are foundational building blocks.
@@ -153,6 +167,8 @@
 
 ### Phase 1.7: Unit Tests
 **Summary**: Create comprehensive unit tests for all base classes, aggregates, entities, value objects, and domain logic using xUnit and NSubstitute.
+
+**Status**: ✅ In Progress - 7 tests passing for `AggregateRoot` base class. Additional tests pending for remaining components.
 
 ---
 
