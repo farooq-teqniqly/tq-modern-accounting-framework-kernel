@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="dotnet-tools.json" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Teqniqly.MAF.Kernel.Tests/Teqniqly.MAF.Kernel.Tests.csproj" Id="c587f673-872e-41f5-bb26-24b2f5cd6f5d" />
+  <Project Path="Teqniqly.MAF.Kernel/Teqniqly.MAF.Kernel.csproj" Id="bb48d819-fed9-4111-b92d-e8b5eb84ef09" />
+</Solution>
