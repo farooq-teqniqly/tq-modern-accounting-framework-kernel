@@ -9,6 +9,6 @@
     <File Path="LICENSE" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="Teqniqly.MAF.Kernel.Tests/Teqniqly.MAF.Kernel.Tests.csproj" Id="c587f673-872e-41f5-bb26-24b2f5cd6f5d" />
-  <Project Path="Teqniqly.MAF.Kernel/Teqniqly.MAF.Kernel.csproj" Id="bb48d819-fed9-4111-b92d-e8b5eb84ef09" />
+  <Project Path="Teqniqly.MAF.Kernel.Domain.Tests/Teqniqly.MAF.Kernel.Domain.Tests.csproj" Id="c587f673-872e-41f5-bb26-24b2f5cd6f5d" />
+  <Project Path="Teqniqly.MAF.Kernel.Domain/Teqniqly.MAF.Kernel.Domain.csproj" Id="bb48d819-fed9-4111-b92d-e8b5eb84ef09" />
 </Solution>
